@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>HTML MCQ Test — 50 Questions</title>
+<style>
+:root{--indigo:#4f46e5;--indigo-d:#4338ca;--green:#16a34a;--red:#dc2626;--amber:#d97706;--ink:#1e293b;--muted:#64748b;--bg:#f1f5f9;--line:#e2e8f0}
+*{box-sizing:border-box;margin:0;padding:0}
+[hidden]{display:none!important}
+body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5}
+.app-header{background:linear-gradient(135deg,#4f46e5,#7c3aed);color:#fff;padding:22px 16px;text-align:center}
+.app-header h1{font-size:1.5rem}
+.app-header p{opacity:.9;font-size:.95rem;margin-top:4px}
+.chips{margin-top:10px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.chip{background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.35);padding:3px 12px;border-radius:999px;font-size:.8rem}
+.wrap{max-width:1100px;margin:20px auto;padding:0 14px}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;box-shadow:0 1px 3px rgba(15,23,42,.06)}
+.student-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:10px}
+.field label{font-size:.85rem;font-weight:600;display:block;margin-bottom:4px}
+.field input{width:100%;padding:9px 12px;border:1px solid var(--line);border-radius:8px;font-size:.95rem}
+.field input:focus{outline:2px solid var(--indigo)}
+.layout{display:grid;grid-template-columns:1fr 300px;gap:16px;margin-top:16px;align-items:start}
+.progress{height:8px;background:var(--line);border-radius:99px;overflow:hidden;margin:10px 0 4px}
+.progress-fill{height:100%;width:0;background:linear-gradient(90deg,#4f46e5,#7c3aed);transition:width .3s}
+.progress-meta{display:flex;justify-content:space-between;font-size:.85rem;color:var(--muted)}
+.qhead{display:flex;justify-content:space-between;align-items:center;margin-top:12px}
+.qnum{font-weight:700;color:var(--indigo)}
+.marks{font-size:.78rem;background:#eef2ff;color:var(--indigo);padding:2px 10px;border-radius:999px;font-weight:600}
+.qtext{font-size:1.08rem;font-weight:600;margin:10px 0 14px}
+.option{display:flex;gap:10px;align-items:flex-start;border:1.5px solid var(--line);border-radius:10px;padding:10px 12px;margin-bottom:9px;cursor:pointer;transition:.15s}
+.option:hover{border-color:var(--indigo);background:#f5f7ff}
+.option.selected{border-color:var(--indigo);background:#eef2ff}
+.option input{margin-top:4px;accent-color:var(--indigo)}
+.letter{font-weight:700;color:var(--indigo);min-width:20px}
+.opt-text{font-family:ui-monospace,Consolas,monospace;font-size:.92rem;word-break:break-word}
+.qnav{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.btn{border:none;border-radius:9px;padding:10px 18px;font-size:.95rem;font-weight:600;cursor:pointer;transition:.15s}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn.primary{background:var(--indigo);color:#fff}.btn.primary:hover:not(:disabled){background:var(--indigo-d)}
+.btn.ghost{background:#fff;border:1.5px solid var(--line);color:var(--ink)}.btn.ghost:hover:not(:disabled){border-color:var(--indigo);color:var(--indigo)}
+.btn.success{background:var(--green);color:#fff}
+.btn.small{padding:7px 13px;font-size:.85rem}
+.palette-title{font-weight:700;font-size:.95rem;margin-bottom:10px}
+.palette{display:grid;grid-template-columns:repeat(auto-fill,minmax(40px,1fr));gap:7px}
+.palette button{height:38px;border-radius:8px;border:1.5px solid var(--line);background:#fff;font-weight:600;cursor:pointer;font-size:.85rem}
+.palette button.answered{background:#dcfce7;border-color:var(--green);color:#166534}
+.palette button.current{outline:3px solid var(--indigo);outline-offset:1px}
+.legend{display:flex;gap:14px;margin-top:12px;font-size:.78rem;color:var(--muted);flex-wrap:wrap}
+.dot{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:4px}
+.dot.a{background:#dcfce7;border:1px solid var(--green)}.dot.u{background:#fff;border:1px solid var(--line)}
+.submit-row{margin-top:16px;text-align:center}
+.hint{font-size:.8rem;color:var(--muted);text-align:center;margin-top:10px}
+.modal-overlay{position:fixed;inset:0;background:rgba(15,23,42,.55);display:flex;align-items:center;justify-content:center;padding:16px;z-index:50}
+.modal{background:#fff;border-radius:14px;padding:24px;max-width:430px;width:100%}
+.modal h3{margin-bottom:10px}
+.modal .qnav{justify-content:flex-end}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:16px 0}
+.stat{background:#f8fafc;border:1px solid var(--line);border-radius:12px;padding:14px;text-align:center}
+.stat .v{font-size:1.5rem;font-weight:800}
+.stat .k{font-size:.78rem;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;margin-top:2px}
+.v.green{color:var(--green)}.v.red{color:var(--red)}.v.amber{color:var(--amber)}.v.indigo{color:var(--indigo)}
+.result-line{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:6px}
+.badge{padding:3px 12px;border-radius:999px;font-size:.8rem;font-weight:700}
+.badge.correct,.badge.pass{background:#dcfce7;color:#166534}
+.badge.wrong,.badge.fail{background:#fee2e2;color:#991b1b}
+.badge.skipped{background:#fef3c7;color:#92400e}
+.email-box{border-radius:12px;padding:14px;margin:14px 0;font-size:.92rem;border:1px solid}
+.email-box.sending{background:#eef2ff;border-color:#c7d2fe;color:#3730a3}
+.email-box.ok{background:#f0fdf4;border-color:#bbf7d0;color:#166534}
+.email-box.err{background:#fef2f2;border-color:#fecaca;color:#991b1b}
+.email-box.warn{background:#fffbeb;border-color:#fde68a;color:#92400e}
+.spinner{display:inline-block;width:14px;height:14px;border:2px solid #c7d2fe;border-top-color:#4f46e5;border-radius:50%;animation:spin .8s linear infinite;vertical-align:-2px;margin-right:6px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 4px}
+.review-item{border:1px solid var(--line);border-radius:12px;padding:14px;margin-bottom:12px;background:#fff}
+.review-head{display:flex;gap:8px;align-items:flex-start;flex-wrap:wrap}
+.rnum{font-weight:800;color:var(--indigo)}
+.rq{font-weight:600;flex:1;min-width:200px}
+.review-opts{list-style:none;margin-top:10px}
+.review-opts li{padding:7px 10px;border-radius:8px;margin-bottom:5px;font-size:.92rem;border:1px solid transparent;font-family:ui-monospace,Consolas,monospace}
+.review-opts li.correct-opt{background:#f0fdf4;border-color:#bbf7d0}
+.review-opts li.wrong-opt{background:#fef2f2;border-color:#fecaca}
+.tag{font-family:system-ui,sans-serif;font-size:.75rem;font-weight:700;margin-left:6px}
+.correct-opt .tag{color:#166534}.wrong-opt .tag{color:#991b1b}
+.exp{font-size:.85rem;color:var(--muted);margin-top:8px}
+.skip-note{font-size:.85rem;color:var(--amber);margin-top:8px;font-weight:600}
+.section-title{font-size:1.15rem;font-weight:800;margin:18px 0 10px}
+.muted{color:var(--muted);font-size:.9rem}
+footer{text-align:center;font-size:.8rem;color:var(--muted);padding:18px}
+@media(max-width:900px){.layout{grid-template-columns:1fr}}
+@media print{.no-print{display:none!important}.review-item{break-inside:avoid}body{background:#fff}.app-header{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+</style>
+</head>
+<body>
+<header class="app-header">
+<h1>📝 HTML MCQ Test</h1>
+<p>HyperText Markup Language — Online Assessment</p>
+<div class="chips">
+<span class="chip">50 Questions</span><span class="chip">1 Mark Each</span><span class="chip">Total: 50 Marks</span><span class="chip">No Negative Marking</span><span class="chip">⏱ <span id="timer">00:00</span></span>
+</div>
+</header>
+
+<main class="wrap">
+<section id="quizView">
+<div class="card">
+<strong>👤 Student Details</strong>
+<div class="student-grid">
+<div class="field"><label for="sName">Full Name *</label><input id="sName" type="text" placeholder="e.g. Rahul Das" autocomplete="name"></div>
+<div class="field"><label for="sRoll">Roll No. / Student ID *</label><input id="sRoll" type="text" placeholder="e.g. NICT-2026-015"></div>
+<div class="field"><label for="sEmail">Your Email (optional)</label><input id="sEmail" type="email" placeholder="you@example.com" autocomplete="email"></div>
+</div>
+</div>
+
+<div class="layout">
+<div class="card">
+<div class="progress"><div class="progress-fill" id="progressBar"></div></div>
+<div class="progress-meta"><span id="qCounter">Question 1 of 50</span><span id="progressText">0/50 answered</span></div>
+<div class="qhead"><span class="qnum" id="qNum">Q1.</span><span class="marks">Marks: +1 / 0</span></div>
+<p class="qtext" id="qText"></p>
+<div id="options"></div>
+<div class="qnav">
+<button class="btn ghost" id="btnPrev">← Previous</button>
+<button class="btn ghost" id="btnClear">Clear Response</button>
+<button class="btn primary" id="btnNext">Next →</button>
+</div>
+<div class="submit-row"><button class="btn success" id="btnSubmit">✅ Submit Test</button></div>
+<p class="hint">Tip: press keys 1–4 to answer, ← / → to move. Do not refresh the page during the test.</p>
+</div>
+<aside class="card">
+<div class="palette-title">Question Palette</div>
+<div class="palette" id="palette"></div>
+<div class="legend"><span><span class="dot a"></span>Answered</span><span><span class="dot u"></span>Not answered</span></div>
+</aside>
+</div>
+</section>
+
+<section id="reportView" hidden>
+<div class="card">
+<h2>📊 Test Summary Report</h2>
+<p class="muted" id="rMeta"></p>
+<div class="stat-grid">
+<div class="stat"><div class="v indigo" id="rScore"></div><div class="k">Score</div></div>
+<div class="stat"><div class="v indigo" id="rPct"></div><div class="k">Percentage</div></div>
+<div class="stat"><div class="v green" id="rCorrect"></div><div class="k">Correct</div></div>
+<div class="stat"><div class="v red" id="rWrong"></div><div class="k">Wrong</div></div>
+<div class="stat"><div class="v amber" id="rSkipped"></div><div class="k">Skipped</div></div>
+<div class="stat"><div class="v" id="rTime"></div><div class="k">Time Taken</div></div>
+</div>
+<div class="result-line"><span class="badge" id="rResult"></span><span class="badge pass" id="rGrade"></span><span class="muted">Pass mark: 20/50 (40%)</span></div>
+<div class="email-box sending no-print" id="emailBox"><span id="emailStatus"></span></div>
+<div class="actions no-print">
+<button class="btn ghost small" id="btnRetry">🔁 Retry Email</button>
+<button class="btn ghost small" id="btnMailto">✉️ Open Email App</button>
+<button class="btn ghost small" id="btnDownload">⬇️ Download Report (.txt)</button>
+<button class="btn ghost small" id="btnPrint">🖨 Print / Save PDF</button>
+<button class="btn primary small" id="btnRetake">🔄 Retake Test</button>
+</div>
+<p class="muted no-print">The report is sent automatically to <b>nict.nou@gmail.com</b>. If sending fails, use “Open Email App” or “Download Report”.</p>
+</div>
+<h3 class="section-title">📋 Answer Review — All 50 Questions</h3>
+<div id="review"></div>
+</section>
+</main>
+
+<div class="modal-overlay" id="modal" hidden>
+<div class="modal">
+<h3>Submit test?</h3>
+<p id="modalStats"></p>
+<p class="muted" style="margin-top:8px">After submitting you cannot change your answers. The report will be shown and emailed to nict.nou@gmail.com.</p>
+<div class="qnav">
+<button class="btn ghost" id="btnCancel">Review Again</button>
+<button class="btn success" id="btnFinal">Final Submit</button>
+</div>
+</div>
+</div>
+
+<footer>HTML MCQ Test • Reports go to nict.nou@gmail.com • Made for NICT students</footer>
+
+<script>
+"use strict";
+const QUESTIONS = [
+{"q":"What does HTML stand for?","o":["HighText Machine Language","HyperTool Multi Language","HyperText Markup Language","Home Text Markup Language"],"a":2,"e":"HTML stands for HyperText Markup Language, the standard language for creating web pages."},
+{"q":"Who invented HTML?","o":["Bill Gates","Tim Berners-Lee","Brendan Eich","Steve Jobs"],"a":1,"e":"Tim Berners-Lee invented HTML in 1991 at CERN."},
+{"q":"Which is the correct doctype declaration for HTML5?","o":["<!DOCTYPE html>","<!DOCTYPE HTML5>","<doctype html>","<!HTML5>"],"a":0,"e":"HTML5 uses the short declaration <!DOCTYPE html> at the top of the page."},
+{"q":"Which element is the root of an HTML document?","o":["<body>","<head>","<root>","<html>"],"a":3,"e":"<html> is the root element that contains <head> and <body>."},
+{"q":"Where does the visible content of a web page go?","o":["<head>","<body>","<title>","<meta>"],"a":1,"e":"Everything shown on the page is placed inside <body>."},
+{"q":"Which tag sets the text shown on the browser tab?","o":["<tab>","<header>","<title>","<name>"],"a":2,"e":"<title> inside <head> sets the browser-tab text."},
+{"q":"Which tag produces the largest heading?","o":["<h1>","<h6>","<heading>","<head>"],"a":0,"e":"<h1> is the largest heading; <h6> is the smallest."},
+{"q":"Which tag defines a paragraph?","o":["<para>","<pg>","<text>","<p>"],"a":3,"e":"<p> defines a paragraph of text."},
+{"q":"Which tag inserts a line break?","o":["<lb>","<break>","<br>","<newline>"],"a":2,"e":"<br> inserts a line break and has no closing tag."},
+{"q":"Which tag draws a horizontal line (thematic break)?","o":["<line>","<hr>","<hline>","<rule>"],"a":1,"e":"<hr> creates a horizontal rule (thematic break)."},
+{"q":"Which is the correct way to create a hyperlink?","o":["<a url=\"page.html\">Go</a>","<link href=\"page.html\">Go</link>","<hyperlink>page.html</hyperlink>","<a href=\"page.html\">Go</a>"],"a":3,"e":"A link uses <a> with the href attribute."},
+{"q":"Which target value opens a link in a new tab or window?","o":["_blank","_self","_parent","_top"],"a":0,"e":"target=_blank opens the link in a new tab/window."},
+{"q":"Which is the correct way to insert an image?","o":["<image href=\"photo.jpg\">","<img href=\"photo.jpg\">","<img src=\"photo.jpg\" alt=\"Photo\">","<picture src=\"photo.jpg\"></picture>"],"a":2,"e":"<img> uses src for the file and alt for alternate text; it has no closing tag."},
+{"q":"Which attribute gives alternate text for an image?","o":["title","alt","text","caption"],"a":1,"e":"alt text is read by screen readers and shown if the image fails to load."},
+{"q":"Which tag marks text with strong importance (bold by default)?","o":["<bold>","<bigger>","<weight>","<strong>"],"a":3,"e":"<strong> marks strong importance; browsers show it bold."},
+{"q":"Which tag marks emphasized text (italic by default)?","o":["<em>","<i-text>","<italic>","<emphasis>"],"a":0,"e":"<em> marks emphasis; browsers show it italic."},
+{"q":"Which tag creates a bulleted (unordered) list?","o":["<ul>","<ol>","<li>","<list>"],"a":0,"e":"<ul> creates a bulleted, unordered list."},
+{"q":"Which tag creates a numbered (ordered) list?","o":["<ul>","<ol>","<dl>","<num>"],"a":1,"e":"<ol> creates a numbered, ordered list."},
+{"q":"Which tag defines an item inside <ul> or <ol>?","o":["<item>","<list>","<dt>","<li>"],"a":3,"e":"<li> defines each item of <ul> or <ol>."},
+{"q":"Which tag creates a row in a table?","o":["<tr>","<td>","<row>","<th>"],"a":0,"e":"<tr> defines a table row."},
+{"q":"Which tag creates a header cell in a table?","o":["<td>","<th>","<thead>","<header>"],"a":1,"e":"<th> is a table header cell — bold and centered by default."},
+{"q":"Which tag creates a normal data cell in a table?","o":["<tc>","<td>","<tr>","<cell>"],"a":1,"e":"<td> is a standard table data cell."},
+{"q":"Which attribute makes a cell span multiple columns?","o":["rowspan","merge","span","colspan"],"a":3,"e":"colspan merges cells across columns; rowspan merges rows."},
+{"q":"Which tag adds a caption (title) to a table?","o":["<caption>","<title>","<label>","<thead>"],"a":0,"e":"<caption> adds a title to a table and must be its first child."},
+{"q":"Which element is used to collect user input and send it to a server?","o":["<form>","<input-group>","<submit>","<collect>"],"a":0,"e":"<form> wraps controls and defines how data is sent."},
+{"q":"Which attribute of <form> specifies where the data is sent?","o":["method","target","action","href"],"a":2,"e":"action holds the URL that receives the form data."},
+{"q":"Which form method appends the data to the URL?","o":["GET","POST","PUT","SEND"],"a":0,"e":"GET appends data to the URL; POST sends it in the request body."},
+{"q":"Which input type hides (masks) what the user types?","o":["type=\"hidden\"","type=\"secret\"","type=\"text\"","type=\"password\""],"a":3,"e":"type=password masks typed characters; type=hidden is not displayed at all."},
+{"q":"Which input type lets the user select zero or more options?","o":["radio","checkbox","select","button"],"a":1,"e":"Checkboxes are independent — any number can be ticked."},
+{"q":"Which input type lets the user pick exactly one option from a group?","o":["checkbox","text","radio","password"],"a":2,"e":"Radio buttons with the same name allow only one choice."},
+{"q":"Which attribute makes a field compulsory before submit?","o":["required","mandatory","validate","must"],"a":0,"e":"required makes the browser block submission until the field is filled."},
+{"q":"Which attribute shows a short hint inside an empty input?","o":["hint","title","label","placeholder"],"a":3,"e":"placeholder shows grey hint text until the user types."},
+{"q":"Which tag creates a dropdown list?","o":["<dropdown>","<select>","<list>","<input type=\"dropdown\">"],"a":1,"e":"<select> with <option> children creates a dropdown."},
+{"q":"Which tag creates a multi-line text input?","o":["<input type=\"multiline\">","<textbox>","<textarea>","<input rows=\"4\">"],"a":2,"e":"<textarea> is the multi-line text input; rows/cols set its size."},
+{"q":"Which element is designed to group related controls in a form (usually drawn with a border)?","o":["<group>","<legend>","<fieldset>","<optgroup>"],"a":2,"e":"<fieldset> groups related controls; <legend> gives it a caption."},
+{"q":"Which tag gives a caption to a <fieldset>?","o":["<legend>","<caption>","<title>","<label>"],"a":0,"e":"<legend> is the caption of a <fieldset>."},
+{"q":"Which attribute connects a <label> to an input?","o":["id","name","link","for"],"a":3,"e":"The label's for attribute must equal the input's id."},
+{"q":"Which input type automatically checks for a valid e-mail format?","o":["type=\"text\"","type=\"email\"","type=\"mail\"","type=\"address\""],"a":1,"e":"type=email validates the address format on submit."},
+{"q":"Which of these is a semantic HTML5 element for a self-contained piece of content?","o":["<div>","<span>","<article>","<b>"],"a":2,"e":"<article> is semantic; <div> and <span> are generic containers."},
+{"q":"Which HTML5 element defines a block of navigation links?","o":["<nav>","<navigate>","<links>","<menubar>"],"a":0,"e":"<nav> marks a section of navigation links."},
+{"q":"Which element is meant for side content such as a sidebar?","o":["<side>","<extra>","<sidebar>","<aside>"],"a":3,"e":"<aside> holds content indirectly related to the main content."},
+{"q":"Which HTML5 tag embeds a video?","o":["<media>","<video>","<movie>","<film>"],"a":1,"e":"<video> plays video natively without plugins."},
+{"q":"Which attribute displays play/pause buttons on a video or audio player?","o":["player","buttons","controls","toolbar"],"a":2,"e":"controls shows the browser's default player UI."},
+{"q":"Which tag embeds another web page inside the current page?","o":["<iframe>","<frame>","<window>","<embedpage>"],"a":0,"e":"<iframe> creates an inline frame for another document."},
+{"q":"Which attribute gives an element a unique identity?","o":["class","name","id","key"],"a":2,"e":"id must be unique in the document; class can be shared."},
+{"q":"Which attribute applies inline CSS to an element?","o":["css","style","font","design"],"a":1,"e":"The style attribute applies CSS directly on the element."},
+{"q":"What is the correct syntax for an HTML comment?","o":["// comment //","/* comment */","<comment>text</comment>","<!-- comment -->"],"a":3,"e":"HTML comments start with <!-- and end with -->."},
+{"q":"Which entity displays the less-than sign (<) as text?","o":["&lt;","&gt;","&amp;","&quot;"],"a":0,"e":"&lt; displays < and &gt; displays >."},
+{"q":"Which tag declares the character encoding of the page?","o":["<encoding>UTF-8</encoding>","<meta encoding=\"UTF-8\">","<meta charset=\"UTF-8\">","<charset>UTF-8</charset>"],"a":2,"e":"<meta charset=UTF-8> inside <head> declares the page encoding."},
+{"q":"Which tag is used to add JavaScript to a page?","o":["<js>","<script>","<javascript>","<code>"],"a":1,"e":"<script> embeds or links JavaScript; <code> only displays code text."}
+];
+const TOTAL = QUESTIONS.length;
+const EMAIL = "nict.nou@gmail.com";
+const PASS_MARK = 20;
+const LETTERS = ["A","B","C","D"];
+
+let answers = Array(TOTAL).fill(null);
+let current = 0, submitted = false, sending = false;
+let seconds = 0, timerId = null;
+let S = null, results = null, student = null;
+
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const fmt = (s) => { const h=Math.floor(s/3600), m=Math.floor((s%3600)/60), x=s%60; const mm=String(m).padStart(2,"0"), ss=String(x).padStart(2,"0"); return h>0 ? h+":"+mm+":"+ss : mm+":"+ss; };
+const answeredCount = () => answers.filter(a => a !== null).length;
+
+function renderQuestion(){
+  const q = QUESTIONS[current];
+  $("qNum").textContent = "Q" + (current+1) + ".";
+  $("qText").textContent = q.q;
+  $("qCounter").textContent = "Question " + (current+1) + " of " + TOTAL;
+  $("options").innerHTML = q.o.map((opt,i) =>
+    '<label class="option' + (answers[current]===i ? ' selected' : '') + '"><input type="radio" name="opt" value="' + i + '"' + (answers[current]===i ? ' checked' : '') + '><span class="letter">' + LETTERS[i] + '.</span><span class="opt-text">' + esc(opt) + '</span></label>'
+  ).join("");
+  $("btnPrev").disabled = current === 0;
+  $("btnNext").disabled = current === TOTAL-1;
+  updateProgress(); updatePalette();
+}
+function updateProgress(){
+  const n = answeredCount();
+  $("progressBar").style.width = (n/TOTAL*100) + "%";
+  $("progressText").textContent = n + "/" + TOTAL + " answered";
+}
+function buildPalette(){
+  $("palette").innerHTML = QUESTIONS.map((_,i) => '<button type="button" data-i="' + i + '">' + (i+1) + '</button>').join("");
+}
+function updatePalette(){
+  Array.from($("palette").children).forEach((b,i) => {
+    b.classList.toggle("answered", answers[i] !== null);
+    b.classList.toggle("current", i === current);
+  });
+}
+function goTo(n){ current = Math.max(0, Math.min(TOTAL-1, n)); renderQuestion(); }
+function gradeLetter(p){ return p>=90?"A+":p>=80?"A":p>=70?"B":p>=60?"C":p>=50?"D":p>=40?"E":"F"; }
+
+function openModal(){
+  const name = $("sName").value.trim(), roll = $("sRoll").value.trim();
+  if(!name){ alert("Please enter your Full Name before submitting."); $("sName").focus(); return; }
+  if(!roll){ alert("Please enter your Roll No. / Student ID before submitting."); $("sRoll").focus(); return; }
+  const n = answeredCount();
+  $("modalStats").innerHTML = 'Answered: <b style="color:#16a34a">' + n + '</b> &nbsp;•&nbsp; Unanswered: <b style="color:#d97706">' + (TOTAL-n) + '</b> out of ' + TOTAL + '. Unanswered questions get 0 marks.';
+  $("modal").hidden = false;
+}
+
+function finalSubmit(){
+  if(submitted) return;
+  submitted = true;
+  $("modal").hidden = true;
+  $("btnFinal").disabled = true;
+  clearInterval(timerId);
+  student = { name: $("sName").value.trim(), roll: $("sRoll").value.trim(), email: $("sEmail").value.trim() };
+  results = QUESTIONS.map((q,i) => ({ chosen: answers[i], correct: q.a, status: answers[i]===null ? "skipped" : (answers[i]===q.a ? "correct" : "wrong") }));
+  const c = results.filter(r => r.status==="correct").length;
+  const w = results.filter(r => r.status==="wrong").length;
+  const s = TOTAL - c - w;
+  const pct = Math.round(c/TOTAL*1000)/10;
+  S = { score:c, correct:c, wrong:w, skipped:s, pct:pct, grade:gradeLetter(pct), pass:c>=PASS_MARK, time:fmt(seconds), date:new Date().toLocaleString() };
+  buildReport();
+  $("quizView").hidden = true;
+  $("reportView").hidden = false;
+  window.scrollTo(0,0);
+  sendEmail();
+}
+
+function buildReport(){
+  $("rMeta").textContent = "Name: " + student.name + "  •  Roll/ID: " + student.roll + (student.email ? "  •  Email: " + student.email : "") + "  •  Submitted: " + S.date;
+  $("rScore").textContent = S.score + " / " + TOTAL;
+  $("rPct").textContent = S.pct + "%";
+  $("rCorrect").textContent = S.correct;
+  $("rWrong").textContent = S.wrong;
+  $("rSkipped").textContent = S.skipped;
+  $("rTime").textContent = S.time;
+  const r = $("rResult");
+  r.textContent = S.pass ? "PASS ✅" : "FAIL ❌";
+  r.className = "badge " + (S.pass ? "pass" : "fail");
+  $("rGrade").textContent = "Grade: " + S.grade;
+  $("review").innerHTML = QUESTIONS.map((q,i) => {
+    const r = results[i];
+    const badge = r.status==="correct" ? '<span class="badge correct">+1 Correct</span>' : r.status==="wrong" ? '<span class="badge wrong">0 Wrong</span>' : '<span class="badge skipped">0 Skipped</span>';
+    const opts = q.o.map((opt,oi) => {
+      let cls = "", tag = "";
+      if(oi === q.a){ cls = "correct-opt"; tag = (r.chosen===oi) ? "✓ Your answer (correct)" : "✓ Correct answer"; }
+      else if(oi === r.chosen){ cls = "wrong-opt"; tag = "✗ Your answer"; }
+      return '<li class="' + cls + '"><b>' + LETTERS[oi] + '.</b> ' + esc(opt) + (tag ? '<span class="tag">' + tag + '</span>' : '') + '</li>';
+    }).join("");
+    return '<div class="review-item"><div class="review-head"><span class="rnum">Q' + (i+1) + '.</span><span class="rq">' + esc(q.q) + '</span>' + badge + '</div><ul class="review-opts">' + opts + '</ul>' + (r.status==="skipped" ? '<p class="skip-note">⚠ You did not answer this question.</p>' : '') + '<p class="exp">💡 ' + esc(q.e) + '</p></div>';
+  }).join("");
+}
+
+function answerText(i, choice){ return choice===null ? "(not answered)" : LETTERS[choice] + ") " + QUESTIONS[i].o[choice]; }
+
+function fullReportText(){
+  const line = "=".repeat(60);
+  let t = line + "\nHTML MCQ TEST — ANSWER REPORT\n" + line + "\n";
+  t += "Name: " + student.name + "\nRoll/ID: " + student.roll + "\nEmail: " + (student.email || "-") + "\nSubmitted: " + S.date + "\nTime taken: " + S.time + "\n\n";
+  t += "Score: " + S.score + "/" + TOTAL + "  (" + S.pct + "%)\nCorrect: " + S.correct + "  Wrong: " + S.wrong + "  Skipped: " + S.skipped + "\nGrade: " + S.grade + "  Result: " + (S.pass ? "PASS" : "FAIL") + " (pass mark " + PASS_MARK + "/" + TOTAL + ")\n" + line + "\n\n";
+  QUESTIONS.forEach((q,i) => {
+    const r = results[i];
+    t += "Q" + (i+1) + ". " + q.q + "\n   Your answer   : " + answerText(i, r.chosen) + "\n   Correct answer: " + LETTERS[q.a] + ") " + q.o[q.a] + "\n   Result: " + r.status.toUpperCase() + " (" + (r.status==="correct" ? "+1" : "0") + " mark)\n\n";
+  });
+  return t;
+}
+
+function setEmailStatus(kind, html){ $("emailBox").className = "email-box " + kind + " no-print"; $("emailStatus").innerHTML = html; }
+
+async function sendEmail(){
+  if(sending || !S) return;
+  sending = true; $("btnRetry").disabled = true;
+  setEmailStatus("sending", '<span class="spinner"></span> Sending report to <b>' + EMAIL + '</b> …');
+  const payload = {
+    _subject: "HTML MCQ Report — " + student.name + " (" + student.roll + ") — " + S.score + "/" + TOTAL,
+    _template: "table", _captcha: "false", _honey: "", _url: location.href,
+    "Student Name": student.name, "Roll / ID": student.roll, "Student Email": student.email || "-",
+    "Score": S.score + " / " + TOTAL, "Percentage": S.pct + "%", "Grade": S.grade,
+    "Result": S.pass ? "PASS" : "FAIL", "Correct": String(S.correct), "Wrong": String(S.wrong), "Skipped": String(S.skipped),
+    "Time Taken": S.time, "Submitted At": S.date
+  };
+  QUESTIONS.forEach((q,i) => {
+    const r = results[i];
+    payload["Q" + String(i+1).padStart(2,"0")] = q.q + " | Your answer: " + answerText(i, r.chosen) + " | Correct: " + LETTERS[q.a] + ") " + q.o[q.a] + " | " + r.status.toUpperCase();
+  });
+  const ctrl = new AbortController();
+  const to = setTimeout(() => ctrl.abort(), 25000);
+  try{
+    const res = await fetch("https://formsubmit.co/ajax/" + EMAIL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Accept": "application/json" },
+      body: JSON.stringify(payload),
+      signal: ctrl.signal
+    });
+    const data = await res.json();
+    if(String(data.success) === "true"){
+      if(/activat|confirm/i.test(data.message || "")){
+        setEmailStatus("warn", "⚠ Almost done! FormSubmit has sent a one-time <b>activation email</b> to <b>" + EMAIL + "</b>. Open that inbox and click “Activate Form” — this report and all future reports will then be delivered. After activating, press “Retry Email”.");
+      } else {
+        setEmailStatus("ok", "✅ Report emailed successfully to <b>" + EMAIL + "</b>.");
+      }
+    } else { throw new Error(data.message || "Send failed"); }
+  } catch(err){
+    setEmailStatus("err", "❌ Could not send the email automatically (" + esc(err.message || "network error") + "). Use <b>Open Email App</b> or <b>Download Report</b> below, or press <b>Retry Email</b> once the internet is back.");
+  } finally { clearTimeout(to); sending = false; $("btnRetry").disabled = false; }
+}
+
+function openMailto(){
+  const subj = "HTML MCQ Report — " + student.name + " (" + student.roll + ") — " + S.score + "/" + TOTAL;
+  let b = "HTML MCQ TEST REPORT\nName: " + student.name + "\nRoll/ID: " + student.roll + "\nScore: " + S.score + "/" + TOTAL + " (" + S.pct + "%)\nCorrect: " + S.correct + " | Wrong: " + S.wrong + " | Skipped: " + S.skipped + "\nGrade: " + S.grade + " | " + (S.pass ? "PASS" : "FAIL") + "\nTime: " + S.time + "\nDate: " + S.date + "\n\n";
+  QUESTIONS.forEach((q,i) => {
+    const r = results[i];
+    b += "Q" + (i+1) + ": " + (r.chosen===null ? "-" : LETTERS[r.chosen]) + " | key " + LETTERS[q.a] + " | " + (r.status==="correct" ? "OK" : r.status==="wrong" ? "WRONG" : "SKIP") + "\n";
+  });
+  window.location.href = "mailto:" + EMAIL + "?subject=" + encodeURIComponent(subj) + "&body=" + encodeURIComponent(b);
+}
+
+function downloadReport(){
+  const blob = new Blob([fullReportText()], { type: "text/plain;charset=utf-8" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "HTML_MCQ_Report_" + student.roll.replace(/[^\w-]+/g, "_") + ".txt";
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+}
+
+function init(){
+  buildPalette();
+  renderQuestion();
+  timerId = setInterval(() => { seconds++; $("timer").textContent = fmt(seconds); }, 1000);
+  $("options").addEventListener("change", (e) => { if(e.target && e.target.name === "opt"){ answers[current] = Number(e.target.value); renderQuestion(); } });
+  $("palette").addEventListener("click", (e) => { const b = e.target.closest("button"); if(b) goTo(Number(b.dataset.i)); });
+  $("btnPrev").addEventListener("click", () => goTo(current-1));
+  $("btnNext").addEventListener("click", () => goTo(current+1));
+  $("btnClear").addEventListener("click", () => { answers[current] = null; renderQuestion(); });
+  $("btnSubmit").addEventListener("click", openModal);
+  $("btnCancel").addEventListener("click", () => { $("modal").hidden = true; });
+  $("btnFinal").addEventListener("click", finalSubmit);
+  $("btnRetry").addEventListener("click", sendEmail);
+  $("btnMailto").addEventListener("click", openMailto);
+  $("btnDownload").addEventListener("click", downloadReport);
+  $("btnPrint").addEventListener("click", () => window.print());
+  $("btnRetake").addEventListener("click", () => { if(confirm("Start a new test? The current report will be cleared.")) location.reload(); });
+  document.addEventListener("keydown", (e) => {
+    if(e.key === "Escape" && !$("modal").hidden){ $("modal").hidden = true; return; }
+    if(submitted || !$("modal").hidden) return;
+    const tag = e.target.tagName;
+    if(tag === "TEXTAREA" || tag === "SELECT") return;
+    if(tag === "INPUT" && e.target.type !== "radio") return;
+    if(e.key === "ArrowLeft" || e.key === "ArrowRight"){
+      if(tag === "INPUT") return;
+      goTo(current + (e.key === "ArrowRight" ? 1 : -1));
+    } else if(["1","2","3","4"].includes(e.key)){
+      answers[current] = Number(e.key) - 1; renderQuestion();
+    }
+  });
+  window.addEventListener("beforeunload", (e) => { if(!submitted && answeredCount() > 0){ e.preventDefault(); e.returnValue = ""; } });
+}
+document.addEventListener("DOMContentLoaded", init);
+</script>
+</body>
+</html>
